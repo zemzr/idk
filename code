@@ -1,0 +1,40 @@
+from itertools import product
+import string
+import os
+
+def generate_passwords(min_len, max_len, characters, show_process=False):
+    """
+    Generate all possible passwords with lengths between min_len and max_len using the specified characters.
+
+    Parameters:
+    - min_len (int): The minimum length of the password.
+    - max_len (int): The maximum length of the password.
+    - characters (str): The characters to use for generating passwords.
+    - show_process (bool): Whether to show the brute-forcing process or not.
+
+    Returns:
+    - int: The number of generated passwords.
+    """
+    counter = 0
+    with open("Wordlist.txt", 'w') as file_open:
+        for length in range(min_len, max_len + 1):
+            for word in product(characters, repeat=length):
+                password = "".join(word)
+                file_open.write(password + '\n')
+                counter += 1
+                if show_process:
+                    print(password)
+    return counter
+
+if __name__ == "__main__":
+    min_len = int(input("Enter minimum length of password: "))
+    max_len = int(input("Enter maximum length of password: "))
+    characters = string.ascii_letters + string.digits + string.punctuation
+    if os.path.exists("Wordlist.txt"):
+      os.remove("Wordlist.txt")
+    else:
+      pass
+    show_process = input("Do you want to see the brute-forcing process? (y/n): ").lower() == 'y'
+
+    total_passwords = generate_passwords(min_len, max_len, characters, show_process)
+    print(f"Wordlist of {total_passwords} passwords created.")
