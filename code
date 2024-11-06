@@ -1,1 +1,3 @@
-defo not a rat
+@echo off
+echo defo not a rat
+pause
