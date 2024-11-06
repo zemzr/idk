@@ -1,3 +1,4 @@
 @echo off
+color 0c
 echo defo not a rat
 pause
