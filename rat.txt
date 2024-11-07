@@ -1,0 +1,4 @@
+@echo off
+color 02
+echo defo not a Remote Access Trojan
+input
